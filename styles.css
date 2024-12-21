@@ -1,12 +1,12 @@
 /* Общие стили */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #2a2a2a;
+  color: #fff;
   margin: 0;
   padding: 0;
   text-align: center;
-  background: #2a2a2a; /* темный фон для новогоднего настроения */
+  background: #2a2a2a;
   position: relative;
   overflow: hidden;
 }
@@ -23,21 +23,30 @@ body {
   }
 }
 
-.snowflake {
+.snowflakes {
   position: absolute;
   top: 0;
-  color: #fff;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.snowflakes span {
+  position: absolute;
+  top: -100px;
+  color: white;
   font-size: 24px;
   opacity: 0.7;
   animation: snowfall linear infinite;
-  pointer-events: none;
 }
 
-.snowflake:nth-child(odd) {
+.snowflakes span:nth-child(odd) {
   animation-duration: 7s;
 }
 
-.snowflake:nth-child(even) {
+.snowflakes span:nth-child(even) {
   animation-duration: 5s;
   animation-delay: 2s;
 }
@@ -70,7 +79,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Сетка для картинок с адаптивностью */
 #options-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -92,7 +100,6 @@ body {
   transform: scale(1.1);
 }
 
-/* Сообщения об ошибке и успехе */
 #error-message {
   text-align: center;
   background-color: #ff4c4c;
@@ -151,40 +158,11 @@ body {
   max-width: 100%;
 }
 
-/* Новый год - общие элементы */
 body {
-  background-image: url('https://www.transparenttextures.com/patterns/diamond-grunge.png'), url('https://i.pinimg.com/originals/9b/a2/cb/9ba2cb25347a16f74688accc92fa09d1.gif');
-  background-size: cover, 100%;
+  background-image: url('https://i.pinimg.com/originals/9b/a2/cb/9ba2cb25347a16f74688accc92fa09d1.gif');
+  background-size: cover;
   background-attachment: fixed;
   background-position: center;
-}
-
-/* Добавляем анимацию снега */
-.snowflakes {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  pointer-events: none;
-}
-
-.snowflakes span {
-  position: absolute;
-  top: -100px;
-  color: white;
-  font-size: 24px;
-  opacity: 0.7;
-  animation: snowfall 10s linear infinite;
-}
-
-.snowflakes span:nth-child(odd) {
-  animation-duration: 7s;
-}
-
-.snowflakes span:nth-child(even) {
-  animation-duration: 5s;
-  animation-delay: 2s;
 }
 
 /* Адаптивность */
