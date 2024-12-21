@@ -56,14 +56,7 @@ function checkAnswer(selected) {
       currentQuestion++;
       loadQuestion();
     } else {
+      // Показываем финальное сообщение с картинками
       document.getElementById('final-message').style.display = 'block';
-      document.getElementById('final-images').style.display = 'grid';
-    }
-  } else {
-    const errorMessage = document.getElementById('error-message');
-    errorMessage.style.display = 'block';
-    setTimeout(() => errorMessage.style.display = 'none', 2000);
-  }
-}
-
-loadQuestion();
+      const finalImages = document.getElementById('final-images');
+      finalImages.innerHTML = ''; 
