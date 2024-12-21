@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест для Хади</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="snow"></div>
+    <div id="app">
+        <!-- Приветствие -->
+        <div id="welcome">
+            <h1>Привет, Хади! 🌟</h1>
+            <p>Это тест, созданный специально для тебя 💖</p>
+            <button onclick="startTest()">Начать тест</button>
+        </div>
+
+        <!-- Вопросы -->
+        <div id="question" style="display: none;">
+            <h2 id="question-title">Выбери котика 🐾</h2>
+            <div class="options">
+                <img src="cat.jpg" alt="Кот" onclick="checkAnswer(true)">
+                <img src="dog.jpg" alt="Собака" onclick="checkAnswer(false)">
+                <img src="cow.jpg" alt="Корова" onclick="checkAnswer(false)">
+                <img src="lion.jpg" alt="Лев" onclick="checkAnswer(false)">
+            </div>
+            <p id="feedback"></p>
+        </div>
+
+        <!-- Итог -->
+        <div id="result" style="display: none;">
+            <h1>Ты прошла тест! 🎉</h1>
+            <p>Ты самая лучшая, Хади 💕!</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
