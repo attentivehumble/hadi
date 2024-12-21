@@ -1,40 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тест для Хади</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Привет, Хади!</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="snow"></div>
-    <div id="app">
-        <!-- Приветствие -->
-        <div id="welcome">
-            <h1>Привет, Хади! 🌟</h1>
-            <p>Это тест, созданный специально для тебя 💖</p>
-            <button onclick="startTest()">Начать тест</button>
-        </div>
+  <div class="container">
+    <h1>Привет, Хади! ❄️</h1>
+    <p>Добро пожаловать! Давай пройдём небольшой тест, чтобы проверить, как ты знаешь свои любимые вещи! 😊</p>
+    <button id="start-button">Начать тест</button>
 
-        <!-- Вопросы -->
-        <div id="question" style="display: none;">
-            <h2 id="question-title">Выбери котика 🐾</h2>
-            <div class="options">
-                <img src="cat.jpg" alt="Кот" onclick="checkAnswer(true)">
-                <img src="dog.jpg" alt="Собака" onclick="checkAnswer(false)">
-                <img src="cow.jpg" alt="Корова" onclick="checkAnswer(false)">
-                <img src="lion.jpg" alt="Лев" onclick="checkAnswer(false)">
-            </div>
-            <p id="feedback"></p>
-        </div>
-
-        <!-- Итог -->
-        <div id="result" style="display: none;">
-            <h1>Ты прошла тест! 🎉</h1>
-            <p>Ты самая лучшая, Хади 💕!</p>
-        </div>
+    <div id="quiz-container" class="hidden">
+      <h2 id="question-text"></h2>
+      <div id="options-container"></div>
+      <p id="feedback" class="hidden"></p>
     </div>
 
-    <script src="script.js"></script>
+    <div id="final-message" class="hidden">
+      <h2>Мои слова для тебя, Хади ❤️</h2>
+      <p>Вот эти все правильные ответы ассоциируются у меня с тобой, любимая. Я уважаю твои вкусы и предпочтения, как и тебя саму. Люблю тебя, солнышко! 🌞</p>
+      <div id="final-images"></div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
