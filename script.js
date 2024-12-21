@@ -33,7 +33,7 @@ let currentQuestion = 0;
 let correctAnswers = [];
 
 startButton.addEventListener("click", () => {
-  startButton.classList.add("hidden");
+  document.getElementById("greeting").classList.add("hidden");
   quizContainer.classList.remove("hidden");
   loadQuestion();
 });
