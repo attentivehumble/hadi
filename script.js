@@ -22,34 +22,46 @@ function createSnowflakes() {
 createSnowflakes();  // Запускаем создание снежинок при загрузке страницы
 
 // Логика для теста
+let currentQuestion = 0;
+const questions = [
+  { question: "Выбери котика:", correctAnswer: "cat", options: ["cat", "dog", "cow", "lion"] },
+  { question: "Выбери Менди:", correctAnswer: "mendi", options: ["mendi", "fighter1", "fighter2", "fighter3"] },
+  { question: "Выбери Майота:", correctAnswer: "mayot", options: ["mayot", "rapper1", "rapper2", "rapper3"] },
+  { question: "Выбери волейбол:", correctAnswer: "volleyball", options: ["volleyball", "basketball", "football", "tennis"] }
+];
 let correctAnswers = 0;
-const correctAnswersCount = 4;
+
+function loadQuestion() {
+  const question = questions[currentQuestion];
+  document.getElementById('question-text').textContent = question.question;
+  
+  const optionsContainer = document.getElementById('options-container');
+  optionsContainer.innerHTML = '';  // очищаем контейнер перед загрузкой новых картинок
+
+  question.options.forEach(option => {
+    const img = document.createElement('img');
+    img.src = `${option}.jpg`;
+    img.alt = option;
+    img.onclick = () => checkAnswer(option);
+    optionsContainer.appendChild(img);
+  });
+}
 
 function checkAnswer(selected) {
-  const answers = {
-    'cat': 'cat',
-    'mendi': 'mendi',
-    'mayot': 'mayot',
-    'volleyball': 'volleyball'
-  };
-
-  if (selected === answers[Object.keys(answers)[correctAnswers]]) {
+  const correctAnswer = questions[currentQuestion].correctAnswer;
+  
+  if (selected === correctAnswer) {
     correctAnswers++;
-    if (correctAnswers === correctAnswersCount) {
+    if (currentQuestion < questions.length - 1) {
+      currentQuestion++;
+      loadQuestion();
+    } else {
       document.getElementById('final-message').style.display = 'block';
       document.getElementById('final-images').style.display = 'flex';
-    } else {
-      nextQuestion();
     }
   } else {
     document.getElementById('error-message').style.display = 'block';
   }
 }
 
-function nextQuestion() {
-  // Код для перехода к следующему вопросу
-  // Это просто заглушка, в реальности вам нужно скрывать старые вопросы и показывать новые
-  console.log("Переход к следующему вопросу...");
-}
-
-
+loadQuestion();
