@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Тест для Хади</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест для Хади</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <div class="container">
-    <!-- Теплое приветствие -->
     <div id="greeting">
-      <h1>Привет, моя любимая Хади! 🌸</h1>
-      <p>Этот тест я создал специально для тебя, чтобы узнать, как ты смотришь на мир и какие у тебя предпочтения. 😊</p>
-      <p>Надеюсь, ты насладишься этим тестом так же, как я наслаждаюсь каждым моментом с тобой. ❤️</p>
-      <button id="start-button">Начать тест</button>
+        <h1>Привет, любимая!</h1>
+        <p>Давай немного повеселимся и узнаем, какие у тебя предпочтения. Удачи! 🎄❄️</p>
     </div>
 
-    <!-- Блок с тестом, скрыт до начала -->
-    <div id="quiz-container" class="hidden">
-      <h2 id="question-text"></h2>
-      <div id="options-container"></div>
-      <div id="feedback" class="hidden"></div>
+    <div id="quiz-container">
+        <div id="question-text">Выбери котика:</div>
+        <div id="options-container">
+            <img src="cat.jpg" alt="Котик" onclick="checkAnswer('cat')">
+            <img src="dog.jpg" alt="Собака" onclick="checkAnswer('dog')">
+            <img src="cow.jpg" alt="Коровка" onclick="checkAnswer('cow')">
+            <img src="lion.jpg" alt="Лев" onclick="checkAnswer('lion')">
+        </div>
     </div>
 
-    <!-- Финальное сообщение с правильными ответами -->
-    <div id="final-message" class="hidden">
-      <h2>Вот эти все правильные ответы, ассоциируются у меня с тобой, любимая! Я уважаю твои вкусы и предпочтения, как и тебя саму. Люблю тебя, солнышко! 🌟</h2>
-      <div id="final-images"></div>
+    <div id="error-message">
+        <p>Ошибка! Выбери правильного котика!</p>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <div id="final-message">
+        <p>Вот все правильные ответы, ассоциирующиеся с тобой, любимая. Я уважаю твои вкусы и предпочтения, как и тебя саму. Люблю тебя, солнышко!</p>
+        <div id="final-images">
+            <img src="cat.jpg" alt="Котик">
+            <img src="mendi.jpg" alt="Менди">
+            <img src="mayot.jpg" alt="Майот">
+            <img src="volleyball.jpg" alt="Волейбол">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
