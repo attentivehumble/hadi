@@ -1,93 +1,46 @@
-const questions = [
-  {
-    text: "Выбери котика 🐾",
-    options: ["cat.jpg", "dog.jpg", "cow.jpg", "lion.jpg"],
-    correct: "cat.jpg",
-  },
-  {
-    text: "Выбери Менди 🥋",
-    options: ["mendi.jpg", "fighter1.jpg", "fighter2.jpg", "fighter3.jpg"],
-    correct: "mendi.jpg",
-  },
-  {
-    text: "Выбери Майота 🎤",
-    options: ["mayot.jpg", "rapper1.jpg", "rapper2.jpg", "rapper3.jpg"],
-    correct: "mayot.jpg",
-  },
-  {
-    text: "Выбери волейбол 🏐",
-    options: ["volleyball.jpg", "basketball.jpg", "football.jpg", "tennis.jpg"],
-    correct: "volleyball.jpg",
-  },
-];
+// Функция для создания снежинок
+function createSnowflakes() {
+  let snowflakesContainer = document.createElement("div");
+  snowflakesContainer.classList.add('snowflakes');
+  document.body.appendChild(snowflakesContainer);
 
-const startButton = document.getElementById("start-button");
-const quizContainer = document.getElementById("quiz-container");
-const questionText = document.getElementById("question-text");
-const optionsContainer = document.getElementById("options-container");
-const feedback = document.getElementById("feedback");
-const finalMessage = document.getElementById("final-message");
-const finalImages = document.getElementById("final-images");
+  for (let i = 0; i < 50; i++) {
+    let snowflake = document.createElement("span");
+    snowflake.textContent = "❄️";  // Символ снежинки
+    let size = Math.random() * 10 + 10;  // Размер снежинки
+    let left = Math.random() * 100;  // Позиция по горизонтали
+    let animationDelay = Math.random() * 5;  // Случайное время начала анимации
 
-let currentQuestion = 0;
-let correctAnswers = [];
+    snowflake.style.fontSize = `${size}px`;
+    snowflake.style.left = `${left}%`;
+    snowflake.style.animationDelay = `${animationDelay}s`;
 
-startButton.addEventListener("click", () => {
-  document.getElementById("greeting").classList.add("hidden");
-  quizContainer.classList.remove("hidden");
-  loadQuestion();
-});
-
-function loadQuestion() {
-  const question = questions[currentQuestion];
-  questionText.textContent = question.text;
-
-  optionsContainer.innerHTML = "";
-  question.options.forEach((option) => {
-    const img = document.createElement("img");
-    img.src = option;
-    img.alt = "Option";
-    img.addEventListener("click", () => checkAnswer(option));
-    optionsContainer.appendChild(img);
-  });
-
-  feedback.classList.add("hidden");
+    snowflakesContainer.appendChild(snowflake);
+  }
 }
 
-function checkAnswer(selectedOption) {
-  const question = questions[currentQuestion];
+createSnowflakes();  // Запускаем создание снежинок при загрузке страницы
 
-  if (selectedOption === question.correct) {
-    feedback.textContent = "Правильно! 🎉";
-    feedback.style.color = "green";
-    correctAnswers.push(question.correct); // Сохраняем правильный ответ
-    currentQuestion++;
+// Логика для теста
+let correctAnswers = 0;
+const correctAnswersCount = 4;
 
-    if (currentQuestion < questions.length) {
-      setTimeout(() => {
-        loadQuestion();
-      }, 1000);
-    } else {
-      showFinalMessage();
+function checkAnswer(selected) {
+  const answers = {
+    'cat': 'cat',
+    'mendi': 'mendi',
+    'mayot': 'mayot',
+    'volleyball': 'volleyball'
+  };
+
+  if (selected === answers[Object.keys(answers)[correctAnswers]]) {
+    correctAnswers++;
+    if (correctAnswers === correctAnswersCount) {
+      document.getElementById('final-message').style.display = 'block';
+      document.getElementById('final-images').style.display = 'flex';
     }
   } else {
-    feedback.textContent = "Неправильно 😔 Попробуй ещё раз!";
-    feedback.style.color = "red";
+    document.getElementById('error-message').style.display = 'block';
   }
-
-  feedback.classList.remove("hidden");
 }
 
-function showFinalMessage() {
-  quizContainer.classList.add("hidden");
-  finalMessage.classList.remove("hidden");
-
-  // Добавляем правильные картинки в финальное сообщение
-  finalImages.innerHTML = "";
-  correctAnswers.forEach((answer) => {
-    const img = document.createElement("img");
-    img.src = answer;
-    img.alt = "Правильный ответ";
-    finalImages.appendChild(img);
-  });
-}
