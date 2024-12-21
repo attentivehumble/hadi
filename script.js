@@ -1,63 +1,93 @@
-let currentQuestion = 0;
 const questions = [
-    {
-        title: "Выбери котика 🐾",
-        options: ["cat.jpg", "dog.jpg", "cow.jpg", "lion.jpg"],
-        correctIndex: 0
-    },
-    {
-        title: "Выбери Менди 🥊",
-        options: ["fighter1.jpg", "mendi.jpg", "fighter2.jpg", "fighter3.jpg"],
-        correctIndex: 1
-    },
-    {
-        title: "Выбери Майота 🎵",
-        options: ["rapper1.jpg", "rapper2.jpg", "mayot.jpg", "rapper3.jpg"],
-        correctIndex: 2
-    },
-    {
-        title: "Выбери волейбол 🏐",
-        options: ["basketball.jpg", "football.jpg", "volleyball.jpg", "tennis.jpg"],
-        correctIndex: 2
-    }
+  {
+    text: "Выбери котика 🐾",
+    options: ["cat.jpg", "dog.jpg", "cow.jpg", "lion.jpg"],
+    correct: "cat.jpg",
+  },
+  {
+    text: "Выбери Менди 🥋",
+    options: ["mendi.jpg", "fighter1.jpg", "fighter2.jpg", "fighter3.jpg"],
+    correct: "mendi.jpg",
+  },
+  {
+    text: "Выбери Майота 🎤",
+    options: ["mayot.jpg", "rapper1.jpg", "rapper2.jpg", "rapper3.jpg"],
+    correct: "mayot.jpg",
+  },
+  {
+    text: "Выбери волейбол 🏐",
+    options: ["volleyball.jpg", "basketball.jpg", "football.jpg", "tennis.jpg"],
+    correct: "volleyball.jpg",
+  },
 ];
 
-function startTest() {
-    document.getElementById('welcome').style.display = 'none';
-    showQuestion();
+const startButton = document.getElementById("start-button");
+const quizContainer = document.getElementById("quiz-container");
+const questionText = document.getElementById("question-text");
+const optionsContainer = document.getElementById("options-container");
+const feedback = document.getElementById("feedback");
+const finalMessage = document.getElementById("final-message");
+const finalImages = document.getElementById("final-images");
+
+let currentQuestion = 0;
+let correctAnswers = [];
+
+startButton.addEventListener("click", () => {
+  startButton.classList.add("hidden");
+  quizContainer.classList.remove("hidden");
+  loadQuestion();
+});
+
+function loadQuestion() {
+  const question = questions[currentQuestion];
+  questionText.textContent = question.text;
+
+  optionsContainer.innerHTML = "";
+  question.options.forEach((option) => {
+    const img = document.createElement("img");
+    img.src = option;
+    img.alt = "Option";
+    img.addEventListener("click", () => checkAnswer(option));
+    optionsContainer.appendChild(img);
+  });
+
+  feedback.classList.add("hidden");
 }
 
-function showQuestion() {
-    const question = questions[currentQuestion];
-    document.getElementById('question').style.display = 'block';
-    document.getElementById('question-title').innerText = question.title;
-    const imgElements = document.querySelectorAll('.options img');
-    question.options.forEach((src, index) => {
-        imgElements[index].src = src;
-        imgElements[index].onclick = () => checkAnswer(index === question.correctIndex);
-    });
-}
+function checkAnswer(selectedOption) {
+  const question = questions[currentQuestion];
 
-function checkAnswer(isCorrect) {
-    const feedback = document.getElementById('feedback');
-    if (isCorrect) {
-        feedback.innerText = "Правильно! 🌟";
-        feedback.style.color = "#00ff00";
-        setTimeout(() => {
-            currentQuestion++;
-            if (currentQuestion < questions.length) {
-                showQuestion();
-            } else {
-                showResult();
-            }
-        }, 1000);
+  if (selectedOption === question.correct) {
+    feedback.textContent = "Правильно! 🎉";
+    feedback.style.color = "green";
+    correctAnswers.push(question.correct); // Сохраняем правильный ответ
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+      setTimeout(() => {
+        loadQuestion();
+      }, 1000);
     } else {
-        feedback.innerText = "Упс, попробуй ещё раз! 😅";
-        feedback.style.color = "#ff0000";
+      showFinalMessage();
     }
+  } else {
+    feedback.textContent = "Неправильно 😔 Попробуй ещё раз!";
+    feedback.style.color = "red";
+  }
+
+  feedback.classList.remove("hidden");
 }
 
-function showResult() {
-    document.getElementById('question').style.display = 'none';
-    document.getElementById('result').style.display = 'block';
+function showFinalMessage() {
+  quizContainer.classList.add("hidden");
+  finalMessage.classList.remove("hidden");
+
+  // Добавляем правильные картинки в финальное сообщение
+  finalImages.innerHTML = "";
+  correctAnswers.forEach((answer) => {
+    const img = document.createElement("img");
+    img.src = answer;
+    img.alt = "Правильный ответ";
+    finalImages.appendChild(img);
+  });
 }
