@@ -1,27 +1,3 @@
-// Функция для создания снежинок
-function createSnowflakes() {
-  let snowflakesContainer = document.createElement("div");
-  snowflakesContainer.classList.add('snowflakes');
-  document.body.appendChild(snowflakesContainer);
-
-  for (let i = 0; i < 50; i++) {
-    let snowflake = document.createElement("span");
-    snowflake.textContent = "❄️";  // Символ снежинки
-    let size = Math.random() * 10 + 10;  // Размер снежинки
-    let left = Math.random() * 100;  // Позиция по горизонтали
-    let animationDelay = Math.random() * 5;  // Случайное время начала анимации
-
-    snowflake.style.fontSize = `${size}px`;
-    snowflake.style.left = `${left}%`;
-    snowflake.style.animationDelay = `${animationDelay}s`;
-
-    snowflakesContainer.appendChild(snowflake);
-  }
-}
-
-createSnowflakes();  // Запускаем создание снежинок при загрузке страницы
-
-// Логика для теста
 let currentQuestion = 0;
 const questions = [
   { question: "Выбери котика:", correctAnswer: "cat", options: ["cat", "dog", "cow", "lion"] },
@@ -36,7 +12,7 @@ function loadQuestion() {
   document.getElementById('question-text').textContent = question.question;
   
   const optionsContainer = document.getElementById('options-container');
-  optionsContainer.innerHTML = '';  // очищаем контейнер перед загрузкой новых картинок
+  optionsContainer.innerHTML = ''; // очищаем контейнер перед загрузкой новых картинок
 
   question.options.forEach(option => {
     const img = document.createElement('img');
@@ -56,7 +32,32 @@ function checkAnswer(selected) {
       currentQuestion++;
       loadQuestion();
     } else {
-      // Показываем финальное сообщение с картинками
-      document.getElementById('final-message').style.display = 'block';
-      const finalImages = document.getElementById('final-images');
-      finalImages.innerHTML = ''; 
+      showFinalMessage();
+    }
+  } else {
+    showErrorMessage();
+  }
+}
+
+function showErrorMessage() {
+  const errorMessage = document.getElementById('error-message');
+  errorMessage.style.display = 'block';
+  setTimeout(() => {
+    errorMessage.style.display = 'none';
+  }, 2000);
+}
+
+function showFinalMessage() {
+  document.getElementById('final-message').style.display = 'block';
+  const finalImages = document.getElementById('final-images');
+  finalImages.innerHTML = ''; // очищаем предыдущие изображения
+
+  questions.forEach(question => {
+    const img = document.createElement('img');
+    img.src = `${question.correctAnswer}.jpg`;
+    img.alt = question.correctAnswer;
+    finalImages.appendChild(img);
+  });
+}
+
+loadQuestion();  // загружаем первый вопрос при старте
