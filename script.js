@@ -57,11 +57,12 @@ function checkAnswer(selected) {
       loadQuestion();
     } else {
       document.getElementById('final-message').style.display = 'block';
-      document.getElementById('final-images').style.display = 'flex';
+      document.getElementById('final-images').style.display = 'grid';
     }
   } else {
-    document.getElementById('error-message').style.display = 'block';
-    setTimeout(() => document.getElementById('error-message').style.display = 'none', 2000);
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.style.display = 'block';
+    setTimeout(() => errorMessage.style.display = 'none', 2000);
   }
 }
 
