@@ -61,6 +61,7 @@ function checkAnswer(selected) {
     }
   } else {
     document.getElementById('error-message').style.display = 'block';
+    setTimeout(() => document.getElementById('error-message').style.display = 'none', 2000);
   }
 }
 
