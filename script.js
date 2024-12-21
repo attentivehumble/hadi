@@ -38,9 +38,18 @@ function checkAnswer(selected) {
     if (correctAnswers === correctAnswersCount) {
       document.getElementById('final-message').style.display = 'block';
       document.getElementById('final-images').style.display = 'flex';
+    } else {
+      nextQuestion();
     }
   } else {
     document.getElementById('error-message').style.display = 'block';
   }
 }
+
+function nextQuestion() {
+  // Код для перехода к следующему вопросу
+  // Это просто заглушка, в реальности вам нужно скрывать старые вопросы и показывать новые
+  console.log("Переход к следующему вопросу...");
+}
+
 
