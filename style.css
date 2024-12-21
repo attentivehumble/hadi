@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #83a4d4, #b6fbff);
+    color: #fff;
+    text-align: center;
+}
+
+button {
+    background-color: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #ff4d4d;
+}
+
+.options img {
+    width: 200px;
+    margin: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 10px;
+}
+
+.options img:hover {
+    border: 2px solid #fff;
+}
+
+.snow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: url('snow.gif') repeat top center;
+    animation: snow 10s linear infinite;
+}
+
+h1, h2 {
+    margin-top: 50px;
+}
+
+#feedback {
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#result {
+    margin-top: 50px;
+}
